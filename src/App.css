@@ -1,0 +1,7 @@
+@media (min-width:1240px) {
+
+	.sider {
+		max-width: 280px !important;
+		width: 280px !important;
+	}
+}
