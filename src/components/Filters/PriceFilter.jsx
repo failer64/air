@@ -1,10 +1,10 @@
 import { Col, Typography, Input } from 'antd';
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 const { Text } = Typography;
 
 
-const PriceFilter = ({ setFilter }) => {
+const PriceFilter = memo(({ setFilter }) => {
 
 	const [text1, setText1] = useState(0);
 	const [text2, setText2] = useState(150000);
@@ -30,6 +30,6 @@ const PriceFilter = ({ setFilter }) => {
 			<Input type="number" value={text2} onChange={onChangeHandler2} onBlur={onBlurHandler} />
 		</Col>
 	)
-}
+})
 
 export default PriceFilter

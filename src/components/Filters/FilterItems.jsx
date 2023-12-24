@@ -1,6 +1,8 @@
+import { memo } from 'react';
 import { Col, Typography, Checkbox } from 'antd';
 
-const FilterItems = ({ setFilter }) => {
+
+const FilterItems = memo(({ setFilter }) => {
 
 	const onChangeFilter = (e, value) => {
 		if (e.target.checked) {
@@ -25,6 +27,6 @@ const FilterItems = ({ setFilter }) => {
 			</Checkbox>
 		</Col>
 	);
-};
+})
 
 export default FilterItems

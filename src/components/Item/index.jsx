@@ -1,9 +1,9 @@
 import { Col, Card, Row, Button, Typography } from 'antd';
 import Legs from '../Legs';
+import { memo } from 'react';
 
 
-const Item = ({ item }) => {
-
+const Item = memo(({ item }) => {
 	return (
 		<Card bodyStyle={{ 'padding': '0px', marginBottom: '20px' }}>
 			<Row align='middle' style={{ 'backgroundColor': '#4646FA', 'padding': '5px 15px', color: 'white' }}>
@@ -24,6 +24,6 @@ const Item = ({ item }) => {
 			<Button size='large' type="primary" danger style={{ width: '100%' }}>Выбрать</Button>
 		</Card>
 	);
-};
+})
 
 export default Item

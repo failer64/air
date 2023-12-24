@@ -2,6 +2,7 @@ import { Empty, Layout, Spin, Col } from 'antd';
 import Item from '../Item';
 import LoadingButton from '../LoadingButton'
 
+
 const { Content } = Layout;
 
 const MainContent = ({
@@ -9,11 +10,10 @@ const MainContent = ({
 }) => {
 
 
-
 	let sortedItems = items;
 
 	if (sortedItems && filterStops.length) {
-		sortedItems = sortedItems.filter(item => filterStops.includes(0) && item);
+		sortedItems = sortedItems.filter(item => filterStops.includes(0) && item)
 	}
 
 	if (sortedItems && filterPrice.length) {
@@ -60,6 +60,7 @@ const MainContent = ({
 			</Content>
 		</Layout>
 	);
-};
+}
+
 
 export default MainContent

@@ -1,8 +1,9 @@
 import { Col, Typography, Checkbox } from 'antd';
+import { memo } from 'react';
 
 const { Text } = Typography;
 
-const FilterСompanies = ({ items, setFilter }) => {
+const FilterСompanies = memo(({ items, setFilter }) => {
 
 	const onChangeFilter = (e, label) => {
 		if (e.target.checked) {
@@ -36,7 +37,7 @@ const FilterСompanies = ({ items, setFilter }) => {
 			<Typography.Title level={4}>
 				Авиакомпании
 			</Typography.Title>
-			{uniqeItems &&
+			{!!uniqeItems.length &&
 				uniqeItems.map((un, i) => {
 
 					return (
@@ -55,6 +56,6 @@ const FilterСompanies = ({ items, setFilter }) => {
 				)}
 		</Col>
 	);
-};
+})
 
 export default FilterСompanies

@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import { Col, Space, Typography, Radio } from 'antd';
 
-const SortItems = ({ sort, setSort }) => {
+const SortItems = memo(({ sort, setSort }) => {
 
 	const onChangeFilter = (e) => {
 		setSort(e.target.value);
@@ -20,6 +21,6 @@ const SortItems = ({ sort, setSort }) => {
 			</Radio.Group>
 		</Col>
 	);
-};
+})
 
 export default SortItems

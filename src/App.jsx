@@ -7,7 +7,7 @@ import FilterСompanies from './components/Filters/FilterСompanies';
 import SortItems from './components/Filters/SortItems';
 import PriceFilter from './components/Filters/PriceFilter';
 
-import db from '/db/flights.json'
+import db from './../db/flights.json'
 
 const { Sider } = Layout;
 
@@ -34,7 +34,7 @@ function App() {
 				]
 			)
 			setIsLoading(false);
-		}, 1000)
+		}, 0)
 	}
 
 	return (
