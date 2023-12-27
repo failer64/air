@@ -1,12 +1,14 @@
 import { Empty, Layout } from 'antd';
 import Item from '../Item';
 import LoadingButton from '../LoadingButton'
-import { useFilters } from '../../store';
+import { useFilters, useItems } from '../../store';
 
 
 const { Content } = Layout;
 
-const MainContent = ({ items }) => {
+const MainContent = () => {
+
+	const items = useItems((state) => state.items);
 
 	const { filterStops, filterPrice, filterCompanies, sort } = useFilters(state => ({
 		filterStops: state.filterStops,
@@ -14,8 +16,6 @@ const MainContent = ({ items }) => {
 		filterCompanies: state.filterCompanies,
 		sort: state.sort,
 	}));
-
-
 
 	let sortedItems = items;
 

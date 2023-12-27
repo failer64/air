@@ -7,7 +7,7 @@ const LoadingButton = memo(() => {
 	const { loading, error, addNewItems } = useItems((state) => ({
 		loading: state.loading,
 		error: state.error,
-		addNewItems: state.addItems
+		addNewItems: state.addItems,
 	}));
 
 	return (

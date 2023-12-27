@@ -18,6 +18,10 @@ export const useItems = create((set) => ({
 		setTimeout(() => {
 			set({ loading: false })
 		}, 1000)
+	},
+	uniqItems: [],
+	addUniqItems: (items) => {
+		set({ uniqItems: [...items] })
 	}
 }))
 

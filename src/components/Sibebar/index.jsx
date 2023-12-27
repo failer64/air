@@ -7,7 +7,7 @@ import PriceFilter from './../Filters/PriceFilter';
 
 const { Sider } = Layout;
 
-const Sidebar = memo(({ items }) => {
+const Sidebar = memo(() => {
 	return (
 		<Col sm={0} md={6} className='column'>
 			<Sider
@@ -27,7 +27,7 @@ const Sidebar = memo(({ items }) => {
 				<SortItems />
 				<FilterItems />
 				<PriceFilter />
-				<FilterСompanies items={items} />
+				<FilterСompanies />
 			</Sider>
 		</Col>
 	)

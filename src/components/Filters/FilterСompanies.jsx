@@ -1,28 +1,29 @@
 import { Col, Typography, Checkbox } from 'antd';
 import { memo } from 'react';
-import { useFilters } from '../../store';
+import { useFilters, useItems } from '../../store';
 
 const { Text } = Typography;
 
-const FilterСompanies = memo(({ items }) => {
+const FilterСompanies = memo(() => {
 
-	console.log('render')
 	return (
 		<Col>
 			<Typography.Title level={4}>
 				Авиакомпании
 			</Typography.Title>
-			<FilterItems items={items} />
+			<FilterItems />
 		</Col>
 	);
 })
 
 export default FilterСompanies
 
-const FilterItems = memo(({ items }) => {
+const FilterItems = memo(() => {
 
 	const filter = useFilters(state => state.filterCompanies);
 	const setFilter = useFilters(state => state.setFilterCompanies);
+
+	const items = useItems((state) => state.uniqItems);
 
 	const onChangeFilter = (isChecked, label) => {
 		setFilter(isChecked, label);
