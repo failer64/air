@@ -1,22 +1,25 @@
 import { Col, Typography, Input } from 'antd';
 import { memo, useState } from 'react';
+import { useFilters } from '../../store';
 
 const { Text } = Typography;
 
 
-const PriceFilter = memo(({ setFilter }) => {
+const PriceFilter = memo(() => {
 
-	const [text1, setText1] = useState(0);
-	const [text2, setText2] = useState(150000);
+	const [min, setMin] = useState(0);
+	const [max, setMax] = useState(150000);
+
+	const setFilter = useFilters(state => state.setFilterPrice);
 
 	const onChangeHandler1 = (e) => {
-		setText1(e.target.value)
+		setMin(e.target.value)
 	}
 	const onChangeHandler2 = (e) => {
-		setText2(e.target.value)
+		setMax(e.target.value)
 	}
 	const onBlurHandler = () => {
-		setFilter([text1, text2]);
+		setFilter(min, max);
 	}
 
 	return (
@@ -25,9 +28,9 @@ const PriceFilter = memo(({ setFilter }) => {
 				Цена
 			</Typography.Title>
 			<Text>от</Text>
-			<Input type="number" value={text1} onChange={onChangeHandler1} onBlur={onBlurHandler} />
+			<Input type="number" value={min} onChange={onChangeHandler1} onBlur={onBlurHandler} />
 			<Text>до</Text>
-			<Input type="number" value={text2} onChange={onChangeHandler2} onBlur={onBlurHandler} />
+			<Input type="number" value={max} onChange={onChangeHandler2} onBlur={onBlurHandler} />
 		</Col>
 	)
 })

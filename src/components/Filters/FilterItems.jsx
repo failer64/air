@@ -1,17 +1,14 @@
 import { memo } from 'react';
 import { Col, Typography, Checkbox } from 'antd';
+import { useFilters } from '../../store';
 
 
-const FilterItems = memo(({ setFilter }) => {
+const FilterItems = memo(() => {
+
+	const setFilter = useFilters(state => state.setFilterStops);
 
 	const onChangeFilter = (e, value) => {
-		if (e.target.checked) {
-			setFilter(prev => [...prev, value]);
-		} else {
-			setFilter(prev => {
-				return (prev.filter(item => item !== value))
-			});
-		}
+		setFilter(e.target.checked, value);
 	}
 
 	return (

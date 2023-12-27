@@ -1,61 +1,55 @@
 import { Col, Typography, Checkbox } from 'antd';
 import { memo } from 'react';
+import { useFilters } from '../../store';
 
 const { Text } = Typography;
 
-const FilterСompanies = memo(({ items, setFilter }) => {
+const FilterСompanies = memo(({ items }) => {
 
-	const onChangeFilter = (e, label) => {
-		if (e.target.checked) {
-			setFilter(prev => [...prev, label]);
-		} else {
-			setFilter(prev => {
-				return (prev.filter(item => item !== label))
-			});
-		}
-
-	}
-
-	const uniqeItems = items?.sort((a, b) => {
-		return (
-			a.flight.price.total.amount - b.flight.price.total.amount
-		);
-	})
-		.reduce((res, cur) => res.find((find) => {
-
-			return (
-				find.flight.carrier.caption === cur.flight.carrier.caption
-			);
-		}
-		)
-			? res
-			: [...res, cur],
-			[]);
-
+	console.log('render')
 	return (
 		<Col>
 			<Typography.Title level={4}>
 				Авиакомпании
 			</Typography.Title>
-			{!!uniqeItems.length &&
-				uniqeItems.map((un, i) => {
-
-					return (
-						<Checkbox key={i} onChange={(e) => onChangeFilter(e, un.flight.carrier.caption)}>
-							<Text
-								ellipsis
-								style={{ width: 180 }}
-							>
-								{un.flight.carrier.caption}
-							</Text>
-
-							<Text> от {un.flight.price.total.amount}</Text>
-						</Checkbox>
-					);
-				}
-				)}
+			<FilterItems items={items} />
 		</Col>
 	);
 })
 
 export default FilterСompanies
+
+const FilterItems = memo(({ items }) => {
+
+	const filter = useFilters(state => state.filterCompanies);
+	const setFilter = useFilters(state => state.setFilterCompanies);
+
+	const onChangeFilter = (isChecked, label) => {
+		setFilter(isChecked, label);
+	}
+
+	return (
+		<>
+			{
+				!!items.length &&
+				items.map((un, i) =>
+					<Checkbox
+						checked={filter.includes(un.flight.carrier.caption) ? true : false}
+						key={i}
+						onChange={
+							(e) => onChangeFilter(e.target.checked, un.flight.carrier.caption)
+						}
+					>
+						<Text
+							ellipsis
+							style={{ width: 180 }}
+						>
+							{un.flight.carrier.caption}
+						</Text>
+						<Text> от {un.flight.price.total.amount}</Text>
+					</Checkbox >
+				)
+			}
+		</>
+	)
+})

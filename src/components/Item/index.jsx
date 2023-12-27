@@ -5,7 +5,7 @@ import { memo } from 'react';
 
 const Item = memo(({ item }) => {
 	return (
-		<Card bodyStyle={{ 'padding': '0px', marginBottom: '20px' }}>
+		<Card bodyStyle={{ 'padding': 0, marginBottom: 20 }}>
 			<Row align='middle' style={{ 'backgroundColor': '#4646FA', 'padding': '5px 15px', color: 'white' }}>
 				<Col span={16}>
 					<Typography.Title level={3} style={{ margin: 0, color: '#fff ' }}>
@@ -19,8 +19,11 @@ const Item = memo(({ item }) => {
 					<div>Стоимость для одного взрослого пассажира</div>
 				</Col>
 			</Row>
-			{item.flight.legs.map((l, i) => <Legs key={i} item={l} />
-			)}
+			{
+				item.flight.legs.map((l, i) =>
+					<Legs key={i} item={l} />
+				)
+			}
 			<Button size='large' type="primary" danger style={{ width: '100%' }}>Выбрать</Button>
 		</Card>
 	);
